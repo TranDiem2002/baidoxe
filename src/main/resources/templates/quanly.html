@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Management </title>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <!-- Brand -->
+    <a class="navbar-brand" href="#">Bãi đỗ xe</a>
+
+    <!-- Toggler/collapsibe Button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar links -->
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/car}">Danh sách xe</a>
+            </li>
+        </ul>
+
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/baido}">Bãi đỗ</a>
+            </li>
+        </ul>
+
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/carParking}">Quản lý</a>
+            </li>
+        </ul>
+        <!--    </div>-->
+    </div>
+
+    <div class="main">
+        <form th:action="@{/students/search}" th:object="${student}" method="GET">
+            <div class="input-group">
+                <input type="int" class="form-control" name="keyword" id="keyword" th:value="${keyword}"
+                       placeholder="Search this blog">
+                <div class="input-group-append">
+                    <button class="btn btn-secondary" type="button">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</nav>
+<br>
+<br>
+
+<div class="container">
+    <div class="row">
+        <h1>  Danh sách xe đã vào bãi đỗ</h1>
+    </div>
+
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Biển số</th>
+            <th scope="col">Màu sắc</th>
+            <th scope="col">Hãng xe</th>
+            <th scope="col">Thời gian vào</th>
+            <th scope="col">Thời gian ra</th>
+            <th scope="col">Trạng thái</th>
+            <th scope="col">Vị trí</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="car: ${cars}">
+            <td th:text="${car.carId}"></td>
+            <td th:text="${car.bien}"></td>
+            <td th:text="${car.color}"></td>
+            <td th:text="${car.hang}"></td>
+            <td th:text="${car.login}"></td>
+            <td th:text="${car.logout}"></td>
+<!--            <td></td>-->
+<!--            <td ></td>-->
+            <td th:text="${car.status}"></td>
+            <td th:text="${car.slot}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>
